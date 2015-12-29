@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+yum update -y && yum cleanup;
+yum install -y curl git vim wget;
+
+echo "==> Welcome to Vagrant!";
