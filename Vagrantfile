@@ -53,6 +53,6 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision :shell do |s|
-    s.inline = '/vagrant/myscript'
+    s.inline = '/vagrant/bootstrap'
   end
 end
