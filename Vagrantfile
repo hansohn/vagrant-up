@@ -4,8 +4,8 @@
 Vagrant.require_version ">= 1.7.4"
 
 # variables
-$vm_box = "opscode_centos-6.7"
-$vm_box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.7_chef-provisionerless.box"
+$vm_box = "opscode_centos-7.1"
+$vm_box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.1_chef-provisionerless.box"
 $vm_box_download_checksum_type = "md5"
 $vm_box_download_checksum = "e3531c96524b951869544be36667259e"
 $vm_gui = false
@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
   config.vm.box_download_checksum_type = $vm_box_download_checksum_type
   config.vm.box_download_checksum = $vm_box_download_checksum
   config.vm.communicator = "ssh"
-  config.vm.guest = :linux
+  config.vm.hostname = $vm_name
   config.vm.synced_folder ".", "/vagrant"
 
   # ssh
@@ -29,6 +29,11 @@ Vagrant.configure("2") do |config|
 
   # port forwarding
   config.vm.network :forwarded_port, guest: 22, host: 2222, id: 'ssh', auto_correct: true
+  config.vm.network :forwarded_port, guest: 80, host: 8080, id: 'http', auto_correct: true
+  config.vm.network :forwarded_port, guest: 443, host: 8443, id: 'https', auto_correct: true
+  config.vm.network :forwarded_port, guest: 3000, host: 3000, id: 'rails', auto_correct: true
+  config.vm.network :forwarded_port, guest: 3389, host: 3389, id: 'rdp', auto_correct: true
+  config.vm.network :forwarded_port, guest: 5985, host: 5985, id: 'winrm', auto_correct: true
 
   # virtualbox
   config.vm.provider :virtualbox do |v, override|
@@ -53,6 +58,6 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision :shell do |s|
-    s.inline = '/vagrant/bootstrap'
+    s.inline = '/vagrant/repo/bootstrap'
   end
 end
