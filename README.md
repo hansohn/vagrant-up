@@ -18,7 +18,7 @@ $ vagrant-up/install
 ### Using Vagrant
 
 ```bash
-# spin up vagrant centos 6.7 instance
+# spin up vagrant box
 $ cd vagrant-up
 $ vagrant up && vagrant ssh
 ```
