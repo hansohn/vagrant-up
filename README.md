@@ -25,4 +25,4 @@ $ vagrant up && vagrant ssh
 
 ### Automate Stuff
 
-The ```bootstrap``` bash script will execute during ```vagrant up```. Modify the script to do whatever you want. Enjoy!
+The ```repo/bootstrap``` bash script will execute during ```vagrant up```. Modify the script to do whatever you want. Enjoy!

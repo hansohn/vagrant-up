@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+yum update -y && yum clean all;
+yum install -y curl git vim wget;
+sudo cp -f /vagrant/repo/motd /etc/motd;
+
+echo "==> Welcome to Vagrant!";
+echo "==> run 'vagrant ssh' to login";
