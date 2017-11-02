@@ -8,14 +8,9 @@ apps=(
   'vagrant'
   'virtualbox'
 );
-vagrant_plugins=(
-  'vagrant-berkshelf'
-  'vagrant-omnibus'
-  'vagrant-winrm'
-);
+vagrant_plugins=();
 vagrant_boxes=(
-  'opscode_centos-6.7'
-  'opscode_centos-7.1'
+  'bento/centos-7.4'
 );
 
 #------------------------------------------------------------------------------
@@ -27,19 +22,10 @@ if ! which brew > /dev/null 2>&1; then
   if [[ `xcode-select --version` ]] && [[ `which ruby` ]]; then
     echo "==> Instaling HomeBrew";
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" </dev/null;
-    brew update && brew cleanup && brew doctor;
+    brew update && brew doctor && brew cleanup;
   else
     echo "==> Error: You need 'XCode Tools' to continue, please run 'xcode-select --install'";
     exit 1;
-  fi
-fi
-
-# install brew-cask
-if which brew > /dev/null 2>&1; then
-  if ! brew ls | grep '^brew-cask$' > /dev/null 2>&1; then
-    echo "==> Installing Brew-Cask"
-    brew install caskroom/cask/brew-cask;
-    brew cask update && brew cask cleanup && brew cask doctor;
   fi
 fi
 
@@ -68,16 +54,16 @@ for plugin in ${vagrant_plugins[@]}; do
   fi
 done
 
-# install vagrant boxes
-for box in ${vagrant_boxes[@]}; do
-  if ! vagrant box list | grep "^${box}\s.*$" > /dev/null 2>&1; then
-    echo "==> Installing ${box} vagrant box";
-    vagrant box add --name ${box} https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/${box}_chef-provisionerless.box;
-  fi
-done
-
 # install vagrant-completion
 if brew tap | grep -i -q "homebrew/completions" && ! brew ls | grep -i -q "vagrant-completion"; then
   echo "==> Installing vagrant-completion";
   brew install vagrant-completion;
 fi
+
+# install vagrant boxes
+for box in ${vagrant_boxes[@]}; do
+  if ! vagrant box list | grep "^${box}\s.*$" > /dev/null 2>&1; then
+    echo "==> Installing ${box} vagrant box";
+    vagrant box add --provider virtualbox ${box};
+  fi
+done

@@ -9,10 +9,10 @@ Welcome to vagrant-up. This project is designed to install [Vagrant](https://www
 $ xcode-select --install
 
 # download repo
-$ git clone https://github.com/audio4ears/vagrant-up.git
+$ git clone https://github.com/hansohn/vagrant-up.git
 
 # install vagrant
-$ vagrant-up/install
+$ vagrant-up/setup.sh
 ```
 
 ### Using Vagrant
@@ -25,4 +25,4 @@ $ vagrant up && vagrant ssh
 
 ### Automate Stuff
 
-The ```repo/bootstrap``` bash script will execute during ```vagrant up```. Modify the script to do whatever you want. Enjoy!
+The ```data/bootstrap``` bash script will execute during ```vagrant up```. Modify the script to do whatever you want. Enjoy!
