@@ -6,7 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - no new features in development at this time
 
-## [0.1.1](https://github.com/audio4ears/vagrant-up/compare/v0.0.0...v0.1.1) (Jan 17, 2016)
+## [0.2.0](https://github.com/hansohn/vagrant-up/compare/0.1.2...0.2.0) (Nov 02, 2017)
+
+FEATURES:
+
+- update vagrant install script 
+- modernize Vagrantfile
+
+## [0.1.1](https://github.com/hansohn/vagrant-up/compare/0.0.0...0.1.1) (Jan 17, 2016)
 
 FEATURES:
 
