@@ -1,0 +1,21 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# variables
+$vm_name = "vagrant-box"
+
+Vagrant.configure("2") do |config|
+
+  # port forwarding
+  config.vm.network :forwarded_port, guest: 22, host: 2222, id: 'ssh', auto_correct: true
+  config.vm.network :forwarded_port, guest: 80, host: 8080, id: 'http', auto_correct: true
+  config.vm.network :forwarded_port, guest: 443, host: 8443, id: 'https', auto_correct: true
+
+  # docker
+  config.vm.provider :docker do |d, override|
+      d.build_dir = "."
+      d.dockerfile = "Dockerfile"
+      d.name = $vm_name
+      d.remains_running = true
+  end
+end
