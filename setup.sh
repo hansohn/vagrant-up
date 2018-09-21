@@ -10,7 +10,7 @@ apps=(
 );
 vagrant_plugins=();
 vagrant_boxes=(
-  'bento/centos-7.4'
+  'bento/centos-7.5'
 );
 
 #------------------------------------------------------------------------------
@@ -26,14 +26,6 @@ if ! which brew > /dev/null 2>&1; then
   else
     echo "==> Error: You need 'XCode Tools' to continue, please run 'xcode-select --install'";
     exit 1;
-  fi
-fi
-
-# install homebrew completions
-if which brew > /dev/null 2>&1; then
-  if ! brew tap | grep -i -q "homebrew/completions" ; then
-    echo "==> Installing homebrew/completions tap";
-    brew tap homebrew/completions;
   fi
 fi
 
@@ -55,7 +47,7 @@ for plugin in ${vagrant_plugins[@]}; do
 done
 
 # install vagrant-completion
-if brew tap | grep -i -q "homebrew/completions" && ! brew ls | grep -i -q "vagrant-completion"; then
+if ! brew ls | grep -i -q "vagrant-completion"; then
   echo "==> Installing vagrant-completion";
   brew install vagrant-completion;
 fi
