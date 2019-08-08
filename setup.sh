@@ -4,13 +4,17 @@
 # VARIABLES
 #------------------------------------------------------------------------------
 
-apps=(
+brew_apps=();
+brew_cask_apps=(
   'vagrant'
   'virtualbox'
+  'virtualbox-extension-pack'
 );
-vagrant_plugins=();
+vagrant_plugins=(
+  'vagrant-vbguest'
+);
 vagrant_boxes=(
-  'bento/centos-7.5'
+  'centos/7'
 );
 
 #------------------------------------------------------------------------------
@@ -31,10 +35,10 @@ fi
 
 # install homebrew applications
 export HOMEBREW_CASK_OPTS="--appdir=/Applications";
-for app in ${apps[@]}; do
-  if ! brew cask ls | grep "^${app}$" > /dev/null 2>&1; then
-    echo "==> Installing ${app}";
-    brew cask install ${app};
+for brew_cask_app in ${brew_cask_apps[@]}; do
+  if ! brew cask ls | grep "^${brew_cask_app}$" > /dev/null 2>&1; then
+    echo "==> Installing ${brew_cask_app}";
+    brew cask install ${brew_cask_app};
   fi
 done 
 
