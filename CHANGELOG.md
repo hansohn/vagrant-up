@@ -6,12 +6,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - no new features in development at this time
 
+## [0.4.0](https://github.com/hansohn/vagrant-up/compare/0.3.0..0.4.0) (Aug 08, 2019)
+
+FEATURES:
+
+- set default box to centos/7
+- use assigned cpu instead of cpu percentage for compute assignment
+- remove docker nonsense
+- update setup script
+
 ## [0.3.0](https://github.com/hansohn/vagrant-up/compare/0.2.0..0.3.0) (Sep 21, 2018)
 
 FEATURES:
 
 - set default box to bento/centos-7.5
-- use cpu percentage for computer assignment
+- use cpu percentage for compute assignment
 - add docker functionality
 - update documentation
 

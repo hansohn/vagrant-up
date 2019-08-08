@@ -30,15 +30,3 @@ $ vagrant ssh
 ```
 
 The ```data/bootstrap``` bash script will execute during ```vagrant up```. Modify the script to do whatever you want. Enjoy!
-
-### Docker (experimental)
-
-The following is still experimental and requires [Docker](https://www.docker.com/) to be installed
-
-```bash
-# spin up image using vagrant and docker
-$ VAGRANT_VAGRANTFILE=Vagrantfile.docker vagrant up --provider docker
-
-# log into image
-$ vagrant docker-exec -it -- /bin/bash
-```
