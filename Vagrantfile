@@ -2,12 +2,11 @@
 # vi: set ft=ruby :
 
 # variables
-$vm_box = "bento/centos-7.5"
+$vm_box = "centos/7"
 $vm_gui = false
 $vm_name = "vagrant-box"
 $vm_memory = 2048
-$vm_cpu = 2
-$vm_cpuexecutioncap = 50
+$vm_cpu = 1
 
 Vagrant.configure("2") do |config|
   config.vm.box = $vm_box
@@ -17,8 +16,9 @@ Vagrant.configure("2") do |config|
 
   # ssh
   config.ssh.username = "vagrant"
-  config.ssh.password = "vagrant"
+  #config.ssh.password = "vagrant"
   config.ssh.forward_agent = true
+  config.ssh.insert_key = true
 
   # port forwarding
   config.vm.network :forwarded_port, guest: 22, host: 2222, id: 'ssh', auto_correct: true
@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
       v.name = $vm_name
       v.gui = $vm_gui
       v.customize ["modifyvm", :id, "--memory", $vm_memory]
-      v.customize ["modifyvm", :id, "--cpuexecutioncap", $vm_cpuexecutioncap]
+      v.customize ["modifyvm", :id, "--cpus", $vm_cpu]
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
   end
