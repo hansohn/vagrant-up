@@ -2,7 +2,9 @@
 # vi: set ft=ruby :
 
 # variables
-$vm_box = "centos/7"
+# $vm_box = "centos/7"
+# $vm_box = "generic/debian12"
+$vm_box = "bento/ubuntu-24.04"
 $vm_gui = false
 $vm_name = "vagrant-box"
 $vm_memory = 2048
@@ -24,6 +26,7 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 22, host: 2222, id: 'ssh', auto_correct: true
   config.vm.network :forwarded_port, guest: 80, host: 8080, id: 'http', auto_correct: true
   config.vm.network :forwarded_port, guest: 443, host: 8443, id: 'https', auto_correct: true
+  config.vm.network :forwarded_port, guest: 3939, host: 3939, id: 'https', auto_correct: true
 
   # virtualbox
   config.vm.provider :virtualbox do |v, override|
@@ -48,6 +51,6 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision :shell do |s|
-    s.inline = '/vagrant/share/bootstrap.sh'
+    s.inline = '/vagrant/scripts/bootstrap.sh'
   end
 end
