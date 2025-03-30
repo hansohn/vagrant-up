@@ -4,7 +4,7 @@ Welcome to vagrant-up. This project uses [Vagrant](https://www.vagrantup.com/) t
 
 ### Prerequisites
 
-This repo requires [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/) to be installed. You can use the included `setup.sh` script to install these prerequisites for you.
+This repo requires [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/) to be installed. You can use the included `install.sh` script to install these prerequisites for you.
 
 ```bash
 # download repo
@@ -14,7 +14,7 @@ $ git clone https://github.com/hansohn/vagrant-up.git
 $ xcode-select --install
 
 # execute the installer
-$ vagrant-up/setup.sh
+$ vagrant-up/scripts/install.sh
 ```
 
 ### Usage
@@ -29,4 +29,4 @@ $ vagrant up
 $ vagrant ssh
 ```
 
-The ```data/bootstrap``` bash script will execute during ```vagrant up```. Modify the script to do whatever you want. Enjoy!
+The `scripts/bootstrap.sh` script will execute during `vagrant up`. Please customize the script as needed. Enjoy!
